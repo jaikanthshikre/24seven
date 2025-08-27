@@ -1,193 +1,229 @@
 'use client'
 
-import React, { useState } from 'react';
-import { Menu, X, User, Wallet, Trophy, Gamepad2, Search, Bell, Gift } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import {
+  Menu, X, ChevronDown,
+  Trophy, Zap, Gift, Gamepad2,
+  TrendingUp, Smartphone, Circle,
+} from 'lucide-react';
 
-// Continuous, seamless marquee component
-const Marquee = ({ children, speed = 30 }) => (
-  <div className="overflow-hidden whitespace-nowrap relative">
-    <div
-      className="inline-flex animate-marquee"
-      style={{ animationDuration: `${speed}s` }}
-    >
-      <div className="flex-shrink-0 mx-8">{children}</div>
-      <div className="flex-shrink-0 mx-8">{children}</div>
-    </div>
-    <style jsx>{`
-      @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      .animate-marquee {
-        display: inline-flex;
-        animation-name: marquee;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-    `}</style>
-  </div>
-);
+export default function StunningBettingNavbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
-const BettingNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [balance, setBalance] = useState(1250.5);
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const offers = [
-    "🎰 Welcome Bonus: 100% up to $500 + 50 Free Spins!",
-    "⚽ Premier League Special: Bet $20, Get $10 Free Bet!",
-    "🔥 Weekend Cashback: Get 10% back on all losses!",
-    "🎯 Daily Jackpot: Win up to $50,000 every day!",
-    "💎 VIP Program: Exclusive bonuses and faster withdrawals!",
-    "🏆 Tournament Mode: Compete for $100K prize pool!"
+  // Use the actual routes you created
+  const navItems = [
+    { name: 'Cricket',  href: '/cricket',  icon: Trophy },
+    { name: 'Casino',   href: '/casino',   icon: Gamepad2 },
+    { name: 'Tennis',   href: '/tennis',   icon: Zap,  badge: 'LIVE' },
+    { name: 'Football', href: '/football', icon: Gift, badge: 'NEW'  },
   ];
 
+  const isActive = (href) =>
+    pathname === href || pathname.startsWith(href + '/');
+
   return (
-    <div className="w-full">
-      {/* Top Offer Bar with Rich Golden gradient */}
-      <div className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-400 text-amber-900 font-bold py-2 shadow-lg overflow-hidden border-b border-yellow-300">
-        <div className="flex items-center">
-          <Gift className="w-5 h-5 mr-2 ml-4 flex-shrink-0 animate-pulse text-amber-800" />
-          <Marquee speed={20}>
-            <span className="text-sm uppercase tracking-wide">{offers.join(' • ')} •</span>
-          </Marquee>
+    <>
+      {/* Marquee animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
+        }
+        .animate-marquee { animation: marquee 60s linear infinite; }
+      `}</style>
+
+      {/* Top marquee */}
+      <div className="fixed top-0 inset-x-0 bg-gradient-to-r from-red-900 via-red-700 to-red-900 text-white text-sm font-medium z-50 overflow-hidden shadow-lg shadow-red-900/20">
+        <div className="flex animate-marquee whitespace-nowrap py-2">
+          <span className="mx-8 flex items-center gap-2">🔥 Welcome Bonus: Get Bonus up to ₹10% on your first deposit!</span>
+          <span className="mx-8 flex items-center gap-2">⚡ Live Cricket: IND vs AUS - Place your bets now!</span>
+          <span className="mx-8 flex items-center gap-2">🎰 New Slot: Mega Fortune - Play and win huge jackpots!</span>
+          <span className="mx-8 flex items-center gap-2">🏆 Weekend Special: Double your winnings on all sports bets!</span>
+          <span className="mx-8 flex items-center gap-2">💎 VIP Exclusive: Private poker tables now available!</span>
+          <span className="mx-8 flex items-center gap-2">🎁 Daily Rewards: Login streak bonus up to ₹5,000!</span>
+          {/* duplicate for seamless loop */}
+          <span className="mx-8 flex items-center gap-2">🔥 Welcome Bonus: Get 100% up to ₹10,000 on your first deposit!</span>
+          <span className="mx-8 flex items-center gap-2">⚡ Live Cricket: IND vs AUS - Place your bets now!</span>
+          <span className="mx-8 flex items-center gap-2">🎰 New Slot: Mega Fortune - Play and win huge jackpots!</span>
+          <span className="mx-8 flex items-center gap-2">🏆 Weekend Special: Double your winnings on all sports bets!</span>
+          <span className="mx-8 flex items-center gap-2">💎 VIP Exclusive: Private poker tables now available!</span>
+          <span className="mx-8 flex items-center gap-2">🎁 Daily Rewards: Login streak bonus up to ₹5,000!</span>
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav className="sticky top-0 z-50 bg-gradient-to-b from-yellow-50/95 via-amber-50/90 to-yellow-100/95 backdrop-blur-md shadow-xl border-b-2 border-amber-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-
+      {/* Navbar */}
+      <nav
+        className={`fixed top-8 inset-x-0 z-50 transition-all duration-700 ${
+          isScrolled
+            ? 'bg-black/95 border-b border-red-900/30 shadow-lg shadow-red-900/10'
+            : 'bg-black/90'
+        } backdrop-blur-2xl`}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-white font-bold text-xl shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl border border-amber-400">
-                M
-              </div>
-              <span className="ml-3 bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent text-2xl font-extrabold tracking-tight">
-                MahavirBook
-              </span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-6">
-                {['Casino', 'Sports', 'Live', 'Tournaments', 'Promotions'].map((item, idx) => {
-                  const Icon = idx === 0 ? Gamepad2 : idx === 3 ? Trophy : null;
-                  return (
-                    <a
-                      key={item}
-                      href="#"
-                      className="text-amber-800 hover:text-amber-600 px-3 py-2 rounded-lg text-sm font-semibold transition-all transform hover:scale-105 hover:bg-amber-100/50 hover:shadow-md flex items-center border border-transparent hover:border-amber-200"
-                    >
-                      {Icon && <Icon className="w-4 h-4 mr-1" />}{item}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Side - Desktop */}
-            <div className="hidden md:flex items-center space-x-5">
-              {/* Balance Display */}
-             {/*  <div className="flex items-center bg-gradient-to-r from-amber-100 to-yellow-100 px-3 py-1.5 rounded-full border border-amber-200 shadow-inner">
-                <Wallet className="w-4 h-4 text-amber-700 mr-1" />
-                <span className="text-amber-800 text-sm font-bold">${balance.toFixed(2)}</span>
-              </div> */}
-
-              {/* Search */}
+            <Link href="/" className="flex items-center space-x-4 group">
               <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search games..."
-                  className="bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-800 placeholder-amber-600 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:bg-white w-52 shadow-inner border border-amber-200"
-                />
-                <Search className="w-4 h-4 text-amber-600 absolute left-3 top-2.5" />
+                <img src="/images/logo.jpeg" alt="24Seven Book" className="h-10" />
               </div>
+              <div className="block">
+                <span className="text-xl font-bold text-gray-300 tracking-tight">24</span>
+                <span className="text-xl font-bold text-red-500">SEVENBOOK</span>
+              </div>
+            </Link>
 
-              {/* Notifications */}
-              <button className="relative p-2 rounded-full hover:bg-amber-100 transition-colors border border-transparent hover:border-amber-200">
-                <Bell className="w-5 h-5 text-amber-700" />
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse shadow-lg">
-                  3
-                </span>
-              </button>
+            {/* Desktop nav */}
+            <div className="hidden lg:block">
+              <div className="flex items-center bg-gray-900/60 rounded-full p-1 border border-red-900/30">
+                {navItems.map((item) => (
+                  <div key={item.name} className="relative group">
+                    <Link
+                      href={item.href}
+                      className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                        isActive(item.href)
+                          ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                      }`}
+                    >
+                      <item.icon className="w-4 h-4" />
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-red-500 text-white">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
 
-              {/* User Profile */}
-              <div className="flex items-center space-x-2 bg-gradient-to-r from-amber-100 to-yellow-100 px-3 py-1.5 rounded-full border border-amber-200 shadow-inner">
-                <div className="w-8 h-8 bg-gradient-to-br from-amber-600 to-yellow-700 rounded-full flex items-center justify-center shadow-md">
-                  <User className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-amber-800 text-sm font-semibold">User</span>
+                    {/* Example dropdown support (unused unless you add item.dropdown) */}
+                    {item.dropdown && (
+                      <div className="absolute left-0 top-full mt-2 w-40 bg-gray-900/95 backdrop-blur-xl border border-red-900/30 rounded-2xl shadow-2xl shadow-red-900/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden">
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-red-900/20 transition-colors duration-200 first:rounded-t-2xl last:rounded-b-2xl"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Mobile menu toggle */}
-            <div className="md:hidden">
+            {/* Right actions */}
+            <div className="flex items-center gap-2">
+              <div className="hidden md:flex flex-col md:flex-row gap-3">
+                <Link
+                  href="/login"
+                  className="px-6 py-2 rounded-md bg-red-500 text-white font-medium shadow-md hover:bg-red-600 hover:shadow-lg transition-all"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="px-6 py-2 rounded-md border border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white transition-all"
+                >
+                  Register
+                </Link>
+              </div>
+
+              {/* Mobile menu toggle */}
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-amber-800 hover:text-amber-600 p-2 rounded-lg bg-amber-100 hover:bg-amber-200 transition-colors border border-amber-200 hover:border-amber-300 shadow-sm"
+                onClick={() => setIsMobileMenuOpen((v) => !v)}
+                className="lg:hidden w-10 h-10 bg-gray-900/60 border border-red-900/30 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all duration-200"
+                aria-label="Toggle menu"
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-gradient-to-b from-amber-50 to-yellow-50 shadow-lg border-t border-amber-200">
-            <div className="px-4 py-3 space-y-2">
-              {/* Mobile Balance */}
-             {/*  <div className="flex items-center justify-center bg-gradient-to-r from-amber-100 to-yellow-100 px-3 py-2 rounded-lg border border-amber-200 shadow-inner mb-3">
-                <Wallet className="w-4 h-4 text-amber-700 mr-2" />
-                <span className="text-amber-800 font-bold">Balance: ${balance.toFixed(2)}</span>
-              </div> */}
-
-              {/* Mobile Search */}
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search games..."
-                  className="bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-800 placeholder-amber-600 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 w-full border border-amber-200"
-                />
-                <Search className="w-4 h-4 text-amber-600 absolute left-3 top-2.5" />
-              </div>
-
-              {['Casino', 'Sports', 'Live', 'Tournaments', 'Promotions'].map((item, idx) => (
-                <a
-                  key={item}
-                  href="#"
-                  className={`flex items-center px-3 py-2 rounded-lg text-base font-semibold transition-colors border ${
-                    idx === 0 
-                      ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-amber-400 shadow-md' 
-                      : 'text-amber-800 hover:bg-amber-100 border-transparent hover:border-amber-200'
-                  }`}
-                >
-                  {idx === 0 && <Gamepad2 className="w-5 h-5 mr-2 text-white" />}
-                  {idx === 3 && <Trophy className="w-5 h-5 mr-2 text-amber-700" />}
-                  {item}
-                </a>
-              ))}
-
-              {/* Mobile Profile */}
-              <div className="border-t border-amber-200 pt-4 mt-4 flex items-center px-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-amber-600 to-yellow-700 rounded-full flex items-center justify-center mr-3 shadow-md">
-                  <User className="w-4 h-4 text-white" />
+        {/* Mobile drawer */}
+        <div
+          className={`lg:hidden fixed inset-y-0 right-0 w-80 bg-gray-900/95 backdrop-blur-2xl border-l border-red-900/30 transform transition-transform duration-300 z-50 ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } mt-8`}
+        >
+          <div className="p-6 border-b border-red-900/30">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 border-2 border-red-500 rounded-full flex items-center justify-center">
+                  <TrendingUp className="w-4 h-4 text-red-500" />
                 </div>
-                <span className="text-amber-800 font-semibold">Player123</span>
-                <div className="ml-auto relative">
-                  <Bell className="w-5 h-5 text-amber-700" />
-                  <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center animate-pulse">
-                  7
-                  </span>
-                </div>
+                <span className="text-lg font-light text-gray-300">
+                  247<span className="font-bold text-red-500">BETBOOK</span>
+                </span>
               </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close menu">
+                <X className="w-5 h-5" />
+              </button>
             </div>
           </div>
+
+          <div className="p-4 space-y-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between p-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors duration-200"
+              >
+                <div className="flex items-center gap-3">
+                  <item.icon className="w-5 h-5" />
+                  <span className="font-medium">{item.name}</span>
+                  {item.badge && (
+                    <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
+                {/* Chevron only if you later add dropdowns */}
+                {item.dropdown && <ChevronDown className="w-4 h-4" />}
+              </Link>
+            ))}
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-red-900/30">
+            <Link
+              href="/app"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-xl font-medium hover:shadow-lg hover:shadow-red-600/25 transition-all duration-300"
+            >
+              <Smartphone className="w-4 h-4" />
+              Get Mobile App
+            </Link>
+          </div>
+        </div>
+
+        {/* Overlays */}
+        {isMobileMenuOpen && (
+          <div
+            className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+        {isUserMenuOpen && (
+          <div
+            className="hidden lg:block fixed inset-0 z-40"
+            onClick={() => setIsUserMenuOpen(false)}
+          />
         )}
       </nav>
-    </div>
+    </>
   );
-};
-
-export default BettingNavbar;
+}

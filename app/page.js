@@ -1,20 +1,22 @@
-import Image from "next/image";
-import Hero from "./sections/Hero";
-import WhyChooseUs from "./sections/Whychooseus";
-import Games from "./sections/Games";
-import MahavirBookFAQ from "./sections/Faq";
-import Testimonial from "./sections/Testimonial";
+import React from 'react'
+import Banner from './sections/Banner'
+import BettingSiteSection from './sections/Hero'
+import MahavirBookFAQ from './sections/Faq'
+import Testimonial from './sections/Testimonial'
 
 
-export default function Home() {
+import BetChampShowcase from './sections/Herotwo'
+
+const page = () => {
   return (
-   <>
-   <Hero/>
-
-   <Games/>
-      <WhyChooseUs/>
-      <MahavirBookFAQ/>
-      <Testimonial/>
-   </>
-  );
+    <>
+    <Banner/>
+    <BetChampShowcase/>
+    <BettingSiteSection/>
+    <MahavirBookFAQ/>
+    <Testimonial/>
+    </>
+  )
 }
+
+export default page

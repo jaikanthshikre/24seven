@@ -1,200 +1,175 @@
-'use client'
-import React, { useState, useEffect } from 'react';
-import { Zap, Shield, Trophy, Crown, Star, Sparkles, TrendingUp, Gift, Users, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { Shield, Zap, Smartphone, Award } from 'lucide-react';
 
-const WhyChooseUs = () => {
-  const [activeCard, setActiveCard] = useState(null);
-  const [particles, setParticles] = useState([]);
-
-  useEffect(() => {
-    const newParticles = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 4,
-      duration: 3 + Math.random() * 2,
-    }));
-    setParticles(newParticles);
-  }, []);
-
+const BetMasterFeatures = () => {
   const features = [
-    {
-      icon: Zap,
-      title: "Instant Payouts",
-      subtitle: "Lightning Speed",
-      description: "Withdraw your winnings in under 60 seconds. No delays, no excuses - just instant access to your cash.",
-      badge: "< 1 Min",
-      color: "from-yellow-400 to-amber-500",
-      stats: "99.9% Success Rate"
+    { 
+      icon: Shield, 
+      title: 'Secure & Licensed', 
+      desc: 'SSL encrypted transactions',
+      gradient: 'from-red-500 to-red-600'
     },
-    {
-      icon: Shield,
-      title: "Fort Knox Security",
-      subtitle: "Military Grade",
-      description: "Bank-level encryption with biometric authentication. Your funds are safer than government gold reserves.",
-      badge: "SSL 256-bit",
-      color: "from-amber-400 to-orange-500",
-      stats: "Zero Breaches"
+    { 
+      icon: Zap, 
+      title: 'Instant Payouts', 
+      desc: 'Withdraw winnings in minutes',
+      gradient: 'from-red-600 to-red-700'
     },
-    {
-      icon: Trophy,
-      title: "Premium Odds",
-      subtitle: "Industry Leading",
-      description: "Get the best odds in the market with our advanced algorithms. Higher payouts mean bigger wins for you.",
-      badge: "Best Odds",
-      color: "from-yellow-500 to-amber-600",
-      stats: "15% Higher Payouts"
+    { 
+      icon: Smartphone, 
+      title: 'Mobile Ready', 
+      desc: 'Play anywhere, anytime',
+      gradient: 'from-red-500 to-red-700'
     },
-    {
-      icon: Crown,
-      title: "VIP Treatment",
-      subtitle: "Royal Experience",
-      description: "Exclusive bonuses, personal account managers, and priority support. Experience gambling like royalty.",
-      badge: "Elite Status",
-      color: "from-amber-500 to-yellow-600",
-      stats: "24/7 VIP Support"
-    },
-    {
-      icon: Star,
-      title: "5-Star Games",
-      subtitle: "Premium Collection",
-      description: "Over 2000+ games from top providers. Slots, poker, blackjack, roulette - we've got your winning game.",
-      badge: "2000+ Games",
-      color: "from-yellow-400 to-orange-500",
-      stats: "New Games Weekly"
-    },
-    {
-      icon: TrendingUp,
-      title: "Winning Edge",
-      subtitle: "Smart Analytics",
-      description: "AI-powered insights and statistics to help you make smarter bets. Knowledge is your secret weapon.",
-      badge: "AI Powered",
-      color: "from-amber-400 to-yellow-500",
-      stats: "85% Win Rate Boost"
+    { 
+      icon: Award, 
+      title: '24/7 Support', 
+      desc: 'Expert help when you need it',
+      gradient: 'from-red-600 to-red-800'
     }
   ];
 
   return (
-    <section className="relative min-h-screen py-10 overflow-hidden bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-100">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-yellow-200/30 to-amber-300/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 right-0 w-80 h-80 bg-gradient-to-br from-amber-200/25 to-orange-300/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-yellow-300/20 to-amber-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 px-4 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-red-400/15 rounded-full blur-2xl animate-bounce" style={{animationDelay: '1s'}}></div>
       </div>
 
-      {/* Floating Particles */}
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="absolute w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full opacity-60"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            animation: `float ${particle.duration}s ease-in-out infinite`,
-            animationDelay: `${particle.delay}s`,
-          }}
-        />
-      ))}
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="w-full h-full" style={{
+          backgroundImage: `
+            linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
 
-      <div className="relative z-10 container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-100 to-amber-100 px-8 py-3 rounded-full mb-8 shadow-lg">
-            <Sparkles className="w-6 h-6 text-amber-600" />
-            <span className="text-amber-800 font-semibold tracking-wide">Why Champions Choose Us</span>
-            <Sparkles className="w-6 h-6 text-amber-600" />
-          </div>
-          
-          <h1 className="text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-amber-600 via-yellow-500 to-orange-600 bg-clip-text text-transparent leading-tight">
-            The Golden Standard
-          </h1>
-          <h2 className="text-3xl lg:text-4xl font-bold text-amber-800 mb-8">
-            Where Legends Are Born
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Section */}
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent leading-tight">
+            Why Choose 
+            <span className="block bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
+             24SevenBetBook?
+            </span>
           </h2>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-amber-700">
-            <div className="flex items-center gap-2">
-              <Users className="w-5 h-5" />
-              <span className="font-semibold">2M+ Active Players</span>
-            </div>
-            <div className="hidden sm:block w-1 h-1 bg-amber-400 rounded-full"></div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5" />
-              <span className="font-semibold">Licensed & Regulated</span>
-            </div>
-            <div className="hidden sm:block w-1 h-1 bg-amber-400 rounded-full"></div>
-            <div className="flex items-center gap-2">
-              <Gift className="w-5 h-5" />
-              <span className="font-semibold">$50M+ Paid Out</span>
-            </div>
-          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl md:text-2xl text-gray-300 font-medium max-w-2xl mx-auto">
+            Trusted by{' '}
+            <span className="text-red-400 font-bold">millions of players</span>{' '}
+            worldwide
+          </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
               <div
                 key={index}
-                className={`group relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 ${
-                  activeCard === index ? 'scale-105 shadow-yellow-200/50' : ''
-                }`}
-                onMouseEnter={() => setActiveCard(index)}
-                onMouseLeave={() => setActiveCard(null)}
+                className="group relative"
+                style={{
+                  animation: `slideUp 0.8s ease-out ${index * 0.15}s both`
+                }}
               >
-                {/* Gradient Border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-0.5">
-                  <div className="w-full h-full bg-white rounded-3xl"></div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </div>
+                {/* Card */}
+                <div className="relative bg-gray-900/40 backdrop-blur-xl border border-gray-800/50 rounded-3xl p-8 h-full transition-all duration-500 ease-out hover:scale-105 hover:border-red-500/50 hover:bg-gray-900/60 hover:shadow-2xl hover:shadow-red-500/20">
                   
-                  {/* Badge */}
-                  <div className="inline-block bg-gradient-to-r from-yellow-100 to-amber-100 text-amber-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
-                    {feature.badge}
-                  </div>
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-500/20 via-transparent to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                   
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{feature.title}</h3>
-                  <p className="text-amber-600 font-semibold mb-4">{feature.subtitle}</p>
-                  
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed mb-6">{feature.description}</p>
-                  
-                  {/* Stats */}
-                  <div className="flex items-center justify-between pt-4 border-t border-amber-100">
-                    <span className="text-sm text-amber-700 font-semibold">{feature.stats}</span>
-                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                      <CheckCircle className="w-4 h-4 text-white" />
+                  {/* Icon Container */}
+                  <div className="relative mb-6 flex justify-center">
+                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg shadow-red-500/25 group-hover:shadow-red-500/40 transition-all duration-300 group-hover:scale-110`}>
+                      <IconComponent className="w-10 h-10 text-white" strokeWidth={2} />
                     </div>
                   </div>
+
+                  {/* Content */}
+                  <div className="relative">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-100 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      {feature.desc}
+                    </p>
+                  </div>
+
+                  {/* Hover Accent Line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
                 </div>
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-100/50 to-amber-200/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
             );
           })}
         </div>
 
-        
-  </div>
+        {/* Call to Action */}
+        <div className="text-center mt-16 animate-fade-in" style={{animationDelay: '1s'}}>
+          <button className="group relative px-12 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 active:scale-95">
+            <span className="relative z-10">Get Started Today</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+          </button>
+        </div>
+      </div>
 
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(60px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 1s ease-out forwards;
+          opacity: 0;
+        }
+
+        /* Custom glow animation for icons */
+        @keyframes iconGlow {
+          0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+          50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); }
+        }
+
+        .feature-card:hover .icon-container > div {
+          animation: iconGlow 2s ease-in-out infinite;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .main-title {
+            font-size: 3rem;
+          }
+          
+          .features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
         }
       `}</style>
-    </section>
+    </div>
   );
 };
 
-export default WhyChooseUs;
+export default BetMasterFeatures;

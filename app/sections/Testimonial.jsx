@@ -1,67 +1,93 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
+import { Star } from 'lucide-react';
 
-const cards = [
-  {
-    name: "Aarav K.",
-    location: "Mumbai, IN",
-    review:
-      "Clean UI and quick withdrawals on small wins. Live odds refresh fast so placing a bet feels smooth.",
-    rating: 5,
-  },
-  {
-    name: "Sara M.",
-    location: "Delhi, IN",
-    review:
-      "In-play stats are helpful. I keep stakes small and use time-outs when I need a break—nice to have built-in tools.",
-    rating: 4,
-  },
-  {
-    name: "Vikram S.",
-    location: "Bengaluru, IN",
-    review:
-      "Multiples are fun and the bet slip is easy. KYC was fast and support was responsive.",
-    rating: 4,
-  },
-];
+export default function Testimonials247BetBook() {
+  const testimonials = [
+    {
+      name: 'Rohit Sharma',
+      role: 'Pro Bettor',
+      text: '247BETBOOK gives the fastest withdrawals I’ve ever seen. I cashed out my winnings in under 10 minutes!',
+      rating: 5,
+      avatar: 'https://i.pravatar.cc/100?img=1',
+    },
+    {
+      name: 'Ananya Verma',
+      role: 'Casino Player',
+      text: 'Love the live casino tables here. The design, bonuses, and 24/7 support make the experience world-class.',
+      rating: 5,
+      avatar: 'https://i.pravatar.cc/100?img=2',
+    },
+    {
+      name: 'Karan Mehta',
+      role: 'Fantasy Sports Fan',
+      text: 'Finally a platform that combines sports betting, fantasy, and casino—all smooth and secure!',
+      rating: 4,
+      avatar: 'https://i.pravatar.cc/100?img=3',
+    },
+  ];
 
-function Stars({ rating }) {
-  const safe = Math.max(0, Math.min(5, Number(rating) || 0));
   return (
-    <div className="text-amber-500" aria-label={`${safe} out of 5`}>
-      {"★".repeat(safe)}
-      {"☆".repeat(5 - safe)}
-      <span className="sr-only">{safe} out of 5 stars</span>
-    </div>
-  );
-}
+    <section className="relative py-10">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-red-950 to-black" />
 
-export default function Testimonial() {
-  return (
-    <section aria-label="Player testimonials" className="container mx-auto px-5 max-w-5xl py-8">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {cards.map((c, i) => (
-          <div
-            key={`${c.name}-${i}`}
-            className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">{c.name}</h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">{c.location}</p>
+      <div className="relative mx-auto max-w-6xl px-4 text-gray-100">
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <h2 className="mb-3 text-3xl font-extrabold text-white md:text-4xl">
+            What Players Say
+          </h2>
+          <p className="text-gray-400 text-sm md:text-base">
+            Real stories from real bettors who trust 247BETBOOK.
+          </p>
+        </div>
+
+        {/* Testimonial Grid */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t, idx) => (
+            <div
+              key={idx}
+              className="rounded-2xl border border-red-800/40 bg-black/40 p-6 shadow-lg shadow-red-900/30 transition hover:bg-black/60"
+            >
+              {/* Avatar */}
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  className="h-12 w-12 rounded-full ring-2 ring-red-600"
+                />
+                <div>
+                  <h4 className="font-semibold text-white">{t.name}</h4>
+                  <p className="text-xs text-gray-400">{t.role}</p>
+                </div>
               </div>
-              <Stars rating={c.rating} />
-            </div>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-200">“{c.review}”</p>
-          </div>
-        ))}
-      </div>
 
-      {/* Responsible play note */}
-      <p className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-200">
-        18+ only. Please play responsibly. Set limits and never bet more than you can afford to lose.
-      </p>
+              {/* Rating */}
+              <div className="flex items-center mb-3">
+                {[...Array(t.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 fill-red-500 text-red-500"
+                  />
+                ))}
+                {[...Array(5 - t.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 text-gray-600"
+                  />
+                ))}
+              </div>
+
+              {/* Text */}
+              <p className="text-sm text-gray-300 leading-relaxed">
+                "{t.text}"
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

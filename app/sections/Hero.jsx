@@ -1,154 +1,126 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import { Play, MessageCircle, TrendingUp, Users, Trophy, Star, Crown, ArrowRight, CheckCircle, Zap } from 'lucide-react';
+import { useState } from 'react';
+import {
+  Trophy, 
+  Smartphone, 
+} from 'lucide-react';
+import Games from './Games';
+import BetMasterFeatures from './Whychooseus';
 
-const HomePage = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [mounted, setMounted] = useState(false);
+export default function BettingSiteSection() {
+  const [activeTab, setActiveTab] = useState('sports');
 
-  const heroSlides = [
-    { title: 'Win Big Tonight', subtitle: 'Premium slots with massive jackpots', image: '/images/eight.png' },
-    { title: 'Live Casino Action', subtitle: 'Real dealers, real excitement', image: '/images/eight.png'},
-    { title: 'Sports Betting', subtitle: 'Bet on your favorite teams', image: '/images/eight.png' }
+  const sportsData = [
+    {
+      id: 1,
+      sport: 'Cricket',
+      match: 'India vs Australia',
+      league: 'ODI World Cup',
+      time: 'Live Now',
+      odds: { team1: '1.85', team2: '2.10' },
+      isLive: true,
+      viewers: '45.2K'
+    },
+    {
+      id: 2,
+      sport: 'Football',
+      match: 'Manchester United vs Liverpool',
+      league: 'Premier League',
+      time: '2 hours',
+      odds: { team1: '2.25', team2: '1.90' },
+      isLive: false,
+      viewers: '32.8K'
+    },
+    {
+      id: 3,
+      sport: 'Tennis',
+      match: 'Djokovic vs Nadal',
+      league: 'French Open',
+      time: '4 hours',
+      odds: { team1: '1.65', team2: '2.45' },
+      isLive: false,
+      viewers: '28.1K'
+    },
+    {
+      id: 4,
+      sport: 'Basketball',
+      match: 'Lakers vs Warriors',
+      league: 'NBA Finals',
+      time: 'Tomorrow',
+      odds: { team1: '1.95', team2: '1.95' },
+      isLive: false,
+      viewers: '51.7K'
+    }
   ];
 
-  useEffect(() => {
-    setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  const casinoGames = [
+    { name: 'Lightning Roulette', provider: 'Evolution', players: '1,245', jackpot: '₹2.5M', image: '🎰' },
+    { name: 'Blackjack VIP', provider: 'NetEnt', players: '890', jackpot: '₹850K', image: '♠️' },
+    { name: 'Mega Fortune', provider: 'NetEnt', players: '2,156', jackpot: '₹12.8M', image: '💎' },
+    { name: 'Crazy Time', provider: 'Evolution', players: '1,678', jackpot: '₹3.2M', image: '🎡' },
+    { name: 'Book of Dead', provider: 'Play\'n GO', players: '956', jackpot: '₹1.1M', image: '📚' },
+    { name: 'Sweet Bonanza', provider: 'Pragmatic', players: '1,445', jackpot: '₹890K', image: '🍭' }
+  ];
+
+  const promotions = [
+    {
+      title: 'Welcome Bonus',
+      description: 'Get 100% match bonus up to ₹10,000',
+      code: 'WELCOME100',
+      validity: '30 days',
+      type: 'deposit'
+    },
+    {
+      title: 'Free Bet Friday',
+      description: 'Place 5 bets, get 1 free bet worth ₹500',
+      code: 'FREEBET',
+      validity: 'Every Friday',
+      type: 'freebet'
+    },
+    {
+      title: 'Cashback Weekend',
+      description: '10% cashback on all casino losses',
+      code: 'CASHBACK10',
+      validity: 'Weekends',
+      type: 'cashback'
+    }
+  ];
 
   return (
-    <div className="min-h-screen relative">
-      {/* Mobile Image - Top */}
-      <div className="md:hidden w-full p-4">
-        <div className="relative rounded-xl overflow-hidden shadow-lg">
-          <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-            {heroSlides.map((slide, i) => (
-              <img key={i} src={slide.image} alt={slide.title} className="w-full h-48 object-cover flex-shrink-0" />
-            ))}
-          </div>
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1">
-            {heroSlides.map((_, i) => (
-              <button 
-                key={i} 
-                onClick={() => setCurrentSlide(i)} 
-                className={`w-2 h-2 rounded-full transition ${currentSlide === i ? 'bg-amber-400' : 'bg-white/60'}`} 
-              />
-            ))}
+    <div className="min-h-screen bg-black text-white">
+      
+
+
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+      
+<Games/>
+       
+      </div>
+
+      {/* Trust Indicators */}
+    
+<BetMasterFeatures/>
+      {/* Call to Action */}
+      <div className="bg-gradient-to-r from-red-900 to-red-800 py-12">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h3 className="text-3xl font-bold mb-4">Ready to Start Winning?</h3>
+          <p className="text-xl mb-8 text-red-100">Join thousands of players and claim your welcome bonus today</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-red-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2">
+              <Trophy className="w-6 h-6" />
+              Sign Up Now
+            </button>
+            <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-red-900 transition-colors duration-300 flex items-center justify-center gap-2">
+              <Smartphone className="w-6 h-6" />
+              Download App
+            </button>
           </div>
         </div>
       </div>
-
-      {/* Main Hero Section */}
-      <section className="py-12 lg:py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            
-            {/* Left Content */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left">
-              
-              {/* Title */}
-              <div className="mb-8">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-amber-600 to-yellow-500 bg-clip-text text-transparent">
-                    Win Big
-                  </span>
-              
-                  <span className="text-gray-900">Tonight</span>
-                </h1>
-                <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0">
-                  Experience the ultimate in online gaming with 
-                  <span className="font-semibold text-amber-600"> premium slots</span>, 
-                  <span className="font-semibold text-yellow-600"> live tables</span>, and 
-                  <span className="font-semibold text-amber-600"> sports betting</span>—all in one place.
-                </p>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-semibold rounded-xl hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-                  <Crown className="w-5 h-5" />
-                  Register Now - Bonus up to 10%
-                </button>
-                <button className="px-8 py-4 border-2 border-amber-400 text-amber-600 font-semibold rounded-xl hover:bg-amber-50 transition-all duration-300 flex items-center justify-center gap-2">
-                  <MessageCircle className="w-5 h-5" />
-                  WhatsApp Now
-                </button>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl lg:text-3xl font-bold text-amber-600 mb-1">$2.5M+</div>
-                  <div className="text-sm text-gray-600">Daily Jackpots</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl lg:text-3xl font-bold text-amber-600 mb-1">50K+</div>
-                  <div className="text-sm text-gray-600">Active Players</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl lg:text-3xl font-bold text-amber-600 mb-1">500+</div>
-                  <div className="text-sm text-gray-600">Games Available</div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right Content - Desktop Image */}
-            <div className="hidden lg:block w-full lg:w-1/2">
-              <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-200">
-                  <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                    {heroSlides.map((slide, i) => (
-                      <img key={i} src={slide.image} alt={slide.title} className="w-full h-80 lg:h-96 object-cover flex-shrink-0" />
-                    ))}
-                  </div>
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                    {heroSlides.map((_, i) => (
-                      <button 
-                        key={i} 
-                        onClick={() => setCurrentSlide(i)} 
-                        className={`w-3 h-3 rounded-full transition ${currentSlide === i ? 'bg-amber-500' : 'bg-gray-300'}`} 
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Indicators */}
-      <section className=" border-t border-amber-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-amber-500" />
-              <span>Licensed & Regulated</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-500" />
-              <span>Instant Payouts</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Trophy className="w-4 h-4 text-amber-500" />
-              <span>Award Winning Platform</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-amber-500" />
-              <span>5-Star Customer Support</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
-};
-
-export default HomePage;
+}

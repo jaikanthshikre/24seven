@@ -1,54 +1,82 @@
-'use client'
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle, Phone } from 'lucide-react';
+'use client';
 
-export default function MahavirBookFAQ() {
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp, HelpCircle, Phone, Shield, Zap } from 'lucide-react';
+
+export default function FAQ247BetBook() {
   const [openItems, setOpenItems] = useState(new Set([0]));
+
   const toggleItem = (idx) => {
-    const newSet = new Set(openItems);
-    newSet.has(idx) ? newSet.delete(idx) : newSet.add(idx);
-    setOpenItems(newSet);
+    const next = new Set(openItems);
+    next.has(idx) ? next.delete(idx) : next.add(idx);
+    setOpenItems(next);
   };
 
   const faqData = [
     {
-      question: "How do I create an account on Mahavir Book?",
-      answer: "Creating an account is simple and takes less than 2 minutes. Click on 'Register', enter your mobile number, email, and basic details, then verify via OTP to start betting with up to 10% welcome bonus.",
+      question: 'How do I create an account on 247BETBOOK?',
+      answer:
+        'Tap “Register”, enter your mobile/email, set a secure password, and verify via OTP. You can start playing in under 2 minutes.',
     },
     {
-      question: "What are the available payment methods?",
-      answer: "We support UPI, Net Banking, Debit/Credit Cards, Paytm, PhonePe, Google Pay, and popular e-wallets, all secured with bank-grade encryption.",
+      question: 'Which payment options are supported?',
+      answer:
+        'UPI, NetBanking, major cards, and popular wallets are supported. Transactions use bank-grade encryption and fraud protection.',
     },
     {
-      question: "How long do withdrawals take?",
-      answer: "Withdrawals are processed within 15 minutes to 2 hours, depending on your bank or payment method, making us one of the fastest payout platforms.",
+      question: 'How fast are withdrawals?',
+      answer:
+        'Most withdrawals complete within minutes after KYC is approved. Bank processing times may vary slightly by provider.',
     },
     {
-      question: "What types of games are available?",
-      answer: "Enjoy Sports Betting (Cricket, Football, Tennis), Live Casino (Roulette, Blackjack, Baccarat), Slots, Teen Patti, Andar Bahar, and Fantasy Sports—all in one place.",
+      question: 'What games can I play?',
+      answer:
+        'Live Sports (Cricket, Football, Tennis), Live Casino (Roulette, Blackjack, Baccarat), Slots, Andar Bahar, Teen Patti, and more.',
     },
     {
-      question: "How do I verify my account?",
-      answer: "Upload valid ID proof (Aadhaar, PAN, Passport) and address proof in your dashboard. Verification completes within 24 hours for seamless withdrawals.",
+      question: 'How do I complete KYC?',
+      answer:
+        'Upload a valid photo ID (PAN/Aadhaar/Passport) and address proof in your profile. Reviews usually complete within 24 hours.',
     },
     {
-      question: "How can I contact customer support?",
-      answer: "Reach us 24/7 via WhatsApp, Live Chat, Email (support@mahavirbook.com), or Phone. What'sApp inquiries typically get a response within 5 minutes.",
-    }
+      question: 'How can I reach support?',
+      answer:
+        'We’re available 24/7 via Live Chat and WhatsApp. You can also email support@247betbook.com for account or payment queries.',
+    },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-amber-950 via-yellow-950 to-orange-950">
-      <div className="container mx-auto px-4 max-w-3xl text-gray-100">
+    <section className="relative py-10">
+      {/* Background gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-950 via-black to-red-900" />
+
+      <div className="relative mx-auto max-w-4xl px-4 text-gray-100">
         {/* Header */}
-        <div className="text-center mb-12">
-          <HelpCircle className="mx-auto mb-4 w-10 h-10 text-amber-400" />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-amber-300 mb-2">
-            Frequently Asked Questions
+        <div className="mb-12 text-center">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-600/20 ring-1 ring-red-700/40">
+            <HelpCircle className="h-6 w-6 text-red-400" />
+          </div>
+          <h2 className="mb-2 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+            247BETBOOK FAQs
           </h2>
-          <p className="text-lg text-gray-300">
-            Answers to your key questions about Mahavir Book.
+          <p className="mx-auto max-w-2xl text-sm text-gray-300 md:text-base">
+            Quick answers to the most common questions. Can’t find yours? Our team is here around the clock.
           </p>
+
+        {/* Trust badges */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-red-800/50 bg-red-900/20 px-3 py-1">
+              <Shield className="h-4 w-4 text-red-400" />
+              Secure & Encrypted
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-red-800/50 bg-red-900/20 px-3 py-1">
+              <Zap className="h-4 w-4 text-red-400" />
+              Fast Payouts
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-red-800/50 bg-red-900/20 px-3 py-1">
+              24/7 Live Support
+            </span>
+          </div>
         </div>
 
         {/* FAQ List */}
@@ -58,42 +86,55 @@ export default function MahavirBookFAQ() {
             return (
               <div
                 key={idx}
-                className={`rounded-2xl overflow-hidden transition ${
-                  isOpen ? 'bg-gray-800' : 'bg-gray-800/50'
+                className={`rounded-2xl border transition-colors ${
+                  isOpen
+                    ? 'border-red-700/60 bg-black/60'
+                    : 'border-red-900/40 bg-black/40 hover:bg-black/50'
                 }`}
               >
                 <button
                   onClick={() => toggleItem(idx)}
-                  className="w-full text-left flex justify-between items-center px-6 py-4 hover:bg-gray-700 focus:outline-none"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left focus:outline-none"
+                  aria-expanded={isOpen}
                 >
-                  <span className="font-medium text-gray-100">
+                  <span className="text-sm font-medium text-white md:text-base">
                     {item.question}
                   </span>
                   {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-amber-300" />
+                    <ChevronUp className="h-5 w-5 shrink-0 text-red-400" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-amber-300" />
+                    <ChevronDown className="h-5 w-5 shrink-0 text-red-400" />
                   )}
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-4 bg-gray-800">
-                    <p className="text-gray-200 leading-relaxed">
+
+                {/* Collapsible answer */}
+                <div
+                  className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="min-h-0">
+                    <div className="px-5 pb-5 text-sm leading-relaxed text-gray-200 md:text-[15px]">
                       {item.answer}
-                    </p>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
         </div>
 
         {/* CTA */}
-        <div className="mt-16 text-center">
-          <button className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold px-8 py-3 rounded-full shadow-lg transition">
-            <Phone className="w-5 h-5" />
+        <div className="mt-14 text-center">
+          <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-500 px-8 py-3 font-semibold text-white shadow-lg shadow-red-900/40 ring-1 ring-red-700 transition hover:from-red-500 hover:to-red-400">
+            <Phone className="h-5 w-5" />
             Contact 24/7 Support
           </button>
+          <p className="mt-3 text-xs text-gray-400">
+            WhatsApp & Live Chat available inside your 247BETBOOK account.
+          </p>
         </div>
       </div>
     </section>
-  )};
+  );
+}

@@ -2,10 +2,11 @@
 
 import "./globals.css";
 import Footer from "./components/Footer";
-import BettingNavbar from "./components/Navbar";
+
 
 // 1. Import Poppins from next/font/google (named import)
 import { Poppins } from "next/font/google";
+import BettingNavbar from "./components/Navbar";
 
 // 2. Configure the weights/subsets you need
 const poppins = Poppins({
@@ -24,9 +25,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.className}>
       {/* 3. Now every element inside has Poppins applied */}
       <body className="antialiased">
-        <BettingNavbar />
+     <BettingNavbar/>
         <main>{children}</main>
-        <Footer />
+    <Footer/>
       </body>
     </html>
   );
