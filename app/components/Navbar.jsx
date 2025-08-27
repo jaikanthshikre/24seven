@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
-  Menu, X, ChevronDown,
+  Menu, X,
   Trophy, Zap, Gift, Gamepad2,
-  TrendingUp, Smartphone, Circle,
+  TrendingUp, Smartphone,
 } from 'lucide-react';
 
 export default function StunningBettingNavbar() {
@@ -29,8 +29,7 @@ export default function StunningBettingNavbar() {
     { name: 'Football', href: '/football', icon: Gift, badge: 'NEW'  },
   ];
 
-  const isActive = (href) =>
-    pathname === href || pathname.startsWith(href + '/');
+  const isActive = (href) => pathname === href || pathname?.startsWith(href + '/');
 
   return (
     <>
@@ -64,11 +63,12 @@ export default function StunningBettingNavbar() {
 
       {/* Navbar */}
       <nav
-        className={`fixed top-8 inset-x-0 z-50 transition-all duration-700 ${
-          isScrolled
-            ? 'bg-black/95 border-b border-red-900/30 shadow-lg shadow-red-900/10'
-            : 'bg-black/90'
-        } backdrop-blur-2xl`}
+        className={`fixed top-8 inset-x-0 z-50 transition-all duration-700
+        bg-black
+        ${isScrolled
+          ? 'lg:bg-black/95 border-b border-red-900/30 shadow-lg shadow-red-900/10'
+          : 'lg:bg-black/90'}
+        lg:backdrop-blur-2xl`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -95,6 +95,7 @@ export default function StunningBettingNavbar() {
                           ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
                           : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                       }`}
+                      aria-current={isActive(item.href) ? 'page' : undefined}
                     >
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
@@ -104,21 +105,6 @@ export default function StunningBettingNavbar() {
                         </span>
                       )}
                     </Link>
-
-                    {/* Example dropdown support (unused unless you add item.dropdown) */}
-                    {item.dropdown && (
-                      <div className="absolute left-0 top-full mt-2 w-40 bg-gray-900/95 backdrop-blur-xl border border-red-900/30 rounded-2xl shadow-2xl shadow-red-900/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden">
-                        {item.dropdown.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
-                            className="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-red-900/20 transition-colors duration-200 first:rounded-t-2xl last:rounded-b-2xl"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
@@ -155,7 +141,7 @@ export default function StunningBettingNavbar() {
 
         {/* Mobile drawer */}
         <div
-          className={`lg:hidden fixed inset-y-0 right-0 w-80 bg-gray-900/95 backdrop-blur-2xl border-l border-red-900/30 transform transition-transform duration-300 z-50 ${
+          className={`lg:hidden fixed inset-y-0 right-0 w-80 bg-gray-900 border-l border-red-900/30 transform transition-transform duration-300 z-50 ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           } mt-8`}
         >
@@ -169,7 +155,11 @@ export default function StunningBettingNavbar() {
                   247<span className="font-bold text-red-500">BETBOOK</span>
                 </span>
               </div>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close menu">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-400 hover:text-white"
+                aria-label="Close menu"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -192,8 +182,6 @@ export default function StunningBettingNavbar() {
                     </span>
                   )}
                 </div>
-                {/* Chevron only if you later add dropdowns */}
-                {item.dropdown && <ChevronDown className="w-4 h-4" />}
               </Link>
             ))}
           </div>
@@ -213,7 +201,7 @@ export default function StunningBettingNavbar() {
         {/* Overlays */}
         {isMobileMenuOpen && (
           <div
-            className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
+            className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
