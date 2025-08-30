@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, User } from 'lucide-react';
 
 export default function Testimonials247BetBook() {
   const testimonials = [
@@ -10,21 +10,18 @@ export default function Testimonials247BetBook() {
       role: 'Pro Bettor',
       text: '247BETBOOK gives the fastest withdrawals I’ve ever seen. I cashed out my winnings in under 10 minutes!',
       rating: 5,
-      avatar: 'https://i.pravatar.cc/100?img=1',
     },
     {
       name: 'Ananya Verma',
       role: 'Casino Player',
       text: 'Love the live casino tables here. The design, bonuses, and 24/7 support make the experience world-class.',
       rating: 5,
-      avatar: 'https://i.pravatar.cc/100?img=2',
     },
     {
       name: 'Karan Mehta',
       role: 'Fantasy Sports Fan',
       text: 'Finally a platform that combines sports betting, fantasy, and casino—all smooth and secure!',
       rating: 4,
-      avatar: 'https://i.pravatar.cc/100?img=3',
     },
   ];
 
@@ -51,13 +48,11 @@ export default function Testimonials247BetBook() {
               key={idx}
               className="rounded-2xl border border-red-800/40 bg-black/40 p-6 shadow-lg shadow-red-900/30 transition hover:bg-black/60"
             >
-              {/* Avatar */}
+              {/* Icon instead of Avatar */}
               <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="h-12 w-12 rounded-full ring-2 ring-red-600"
-                />
+                <div className="h-12 w-12 flex items-center justify-center rounded-full bg-red-600/20 ring-2 ring-red-600">
+                  <User className="h-6 w-6 text-red-500" />
+                </div>
                 <div>
                   <h4 className="font-semibold text-white">{t.name}</h4>
                   <p className="text-xs text-gray-400">{t.role}</p>

@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Activity
 } from 'lucide-react';
+import Link from 'next/link';
 
 const SportsBetting = () => {
   const [activeSport, setActiveSport] = useState('cricket');
@@ -185,14 +186,14 @@ const SportsBetting = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-4">
-                <button className={`flex-1 px-3 py-3 rounded-xl bg-gradient-to-r ${activeSportData.color} text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center gap-2`}>
+               <Link href="http://wa.link/iwant24sevenid"><button className={`flex-1 px-3 py-3 rounded-xl bg-gradient-to-r ${activeSportData.color} text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center gap-2`}>
                   <Play size={20} />
                   Start Betting
-                </button>
-                <button className="px-3 py-3 border border-slate-600 text-gray-300 rounded-xl hover:bg-slate-700 transition-all duration-300 flex items-center gap-2">
+                </button></Link> 
+               <Link href="http://wa.link/iwant24sevenid"> <button className="px-3 py-3 border border-slate-600 text-gray-300 rounded-xl hover:bg-slate-700 transition-all duration-300 flex items-center gap-2">
                   <Clock size={20} />
                   Live Events
-                </button>
+                </button></Link>
               </div>
                <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-gray-800 to-red-900 rounded-3xl p-8 shadow-2xl border border-slate-700/50 backdrop-blur-sm">
@@ -203,13 +204,13 @@ const SportsBetting = () => {
               Join millions of sports fans who trust our platform for the ultimate betting experience. 
               Start your winning streak today!
             </p>
-            <button className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-400/25">
+           <Link href="http://wa.link/iwant24sevenid"><button className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-400/25">
               <div className="flex items-center gap-2">
                 <Trophy size={20} />
                 Place Your First Bet
                 <ArrowRight size={20} />
               </div>
-            </button>
+            </button></Link> 
           </div>
         </div>
             </div>

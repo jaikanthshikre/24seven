@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Zap, Smartphone, Award } from 'lucide-react';
+import Link from 'next/link';
 
 const BetMasterFeatures = () => {
   const features = [
@@ -111,10 +112,10 @@ const BetMasterFeatures = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16 animate-fade-in" style={{animationDelay: '1s'}}>
-          <button className="group relative px-12 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 active:scale-95">
+         <Link href="http://wa.link/iwant24sevenid"> <button className="group relative px-12 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 active:scale-95">
             <span className="relative z-10">Get Started Today</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-          </button>
+          </button></Link>
         </div>
       </div>
 

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // app/tennis-betting/page.jsx
 export const metadata = {
   title: "Tennis Betting | 24Seven Bet Book",
@@ -7,7 +9,7 @@ export const metadata = {
 
 export default function TennisBettingPage() {
   return (
-    <main className="min-h-screen bg-red-50 text-red-900">
+    <main className="min-h-screen bg-red-50 text-red-900 py-10">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-red-700 via-red-600 to-rose-600" />
@@ -145,13 +147,12 @@ export default function TennisBettingPage() {
             reliability, high odds, and unmatched customer support to give you the ultimate tennis betting experience.
           </p>
 
-          <div className="mt-8">
-            <a
-              href="/signup"
+           <div className="mt-8">
+            <Link href="http://wa.link/iwant24sevenid"
               className="inline-flex items-center rounded-xl bg-red-700 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
             >
               Create Your Betting ID
-            </a>
+            </Link>
           </div>
         </section>
       </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle, Phone, Shield, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 export default function FAQ247BetBook() {
   const [openItems, setOpenItems] = useState(new Set([0]));
@@ -126,10 +127,10 @@ export default function FAQ247BetBook() {
 
         {/* CTA */}
         <div className="mt-14 text-center">
-          <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-500 px-8 py-3 font-semibold text-white shadow-lg shadow-red-900/40 ring-1 ring-red-700 transition hover:from-red-500 hover:to-red-400">
+         <Link href="http://wa.link/iwant24sevenid"> <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-500 px-8 py-3 font-semibold text-white shadow-lg shadow-red-900/40 ring-1 ring-red-700 transition hover:from-red-500 hover:to-red-400">
             <Phone className="h-5 w-5" />
             Contact 24/7 Support
-          </button>
+          </button></Link>
           <p className="mt-3 text-xs text-gray-400">
             WhatsApp & Live Chat available inside your 247BETBOOK account.
           </p>

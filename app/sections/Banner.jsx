@@ -4,7 +4,7 @@ const Banner = () => {
   return (
  <>
  <div className='pt-9 mt-9'>
-<img src='/images/banner.png'></img>
+<img src='/images/banner.webp'></img>
  </div>
    
  </>

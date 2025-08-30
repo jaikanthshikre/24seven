@@ -114,13 +114,13 @@ export default function StunningBettingNavbar() {
             <div className="flex items-center gap-2">
               <div className="hidden md:flex flex-col md:flex-row gap-3">
                 <Link
-                  href="/login"
+                  href="http://wa.link/iwant24sevenid"
                   className="px-6 py-2 rounded-md bg-red-500 text-white font-medium shadow-md hover:bg-red-600 hover:shadow-lg transition-all"
                 >
                   Login
                 </Link>
                 <Link
-                  href="/register"
+                  href="http://wa.link/iwant24sevenid"
                   className="px-6 py-2 rounded-md border border-red-500 text-red-500 font-medium hover:bg-red-500 hover:text-white transition-all"
                 >
                   Register
